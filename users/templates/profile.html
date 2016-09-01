@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{% block profile %}
+    <b>Имя</b> {{ request.user.first_name }}<br>
+    <b>Фамилия:</b> {{ request.user.last_name }}<br>
+    <b>E-mail:</b> {{ request.user.email }}<br>
+    <b>Телефон:</b> {{ request.user.phone }}<br>
+    <b>Skype:</b> {{ request.user.skype }}<br>
+
+{% endblock %}
