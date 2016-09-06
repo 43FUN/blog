@@ -7,6 +7,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from users import models, forms
 
+
 @admin.register(models.User)
 class UserAdmin(UserAdmin):
     form = forms.UserChangeForm
@@ -17,21 +18,22 @@ class UserAdmin(UserAdmin):
             'username',
             'password'
         )}),
-        (u'Personal info', {'fields': (
+        ('Персональная информация', {'fields': (
+            'avatar',
             'first_name',
             'last_name',
             'email',
             'phone',
             'skype'
         )}),
-        (u'Permissions', {'fields': (
+        ('Статус', {'fields': (
             'is_active',
             'is_staff',
             'is_superuser',
             'groups',
             'user_permissions'
         )}),
-        (u'Important dates', {'fields': (
+        ('Даты входа', {'fields': (
             'last_login',
             'date_joined'
         )}),

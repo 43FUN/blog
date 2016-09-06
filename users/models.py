@@ -5,7 +5,10 @@ from django.db import models
 
 # Create your models here.
 
+
 class User(AbstractUser):
-    phone = models.CharField('Телефункен', max_length=20)
+    avatar = models.ImageField('Аватар', upload_to='avatars')
+    phone = models.CharField('Телефон', max_length=20)
     skype = models.CharField('Skype', max_length=50)
+
 

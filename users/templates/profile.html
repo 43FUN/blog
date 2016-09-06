@@ -1,10 +1,35 @@
 {% extends 'main.html' %}
 
 {% block profile %}
-    <b>Имя</b> {{ request.user.first_name }}<br>
-    <b>Фамилия:</b> {{ request.user.last_name }}<br>
-    <b>E-mail:</b> {{ request.user.email }}<br>
-    <b>Телефон:</b> {{ request.user.phone }}<br>
-    <b>Skype:</b> {{ request.user.skype }}<br>
-
+<h3>Пользователь: <b>{{ request.user }}</b></h3>
+<div class="medium-2 columns">
+    <img src="/media/{{ request.user.avatar }}" width="100px" height="80px"><br>
+    {{ request.user }}
+    <form action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Изменить данные</button>
+    </form>
+</div>
+<h3>Публикации пользователя</h3>
+<div class="row" id="content">
+    <div class="medium-8 columns">
+        <div class="blog-post">
+        {% for article in request.user.article_set.all %}
+            {% csrf_token %}
+            <b><a href="/articles/get/{{article.id}}">{{ article.article_title }}</a></b><br>
+            {{ article.article_text | truncatechars:90 }}<br>
+            <font color="#778899">{{ article.article_date }}</font><br>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
+<div class="medium-3 columns">
+     <form action="/articles/article_add/0" method="get">
+         <button type="submit">Добавить статью</button>
+     </form>
+</div>
 {% endblock %}
+
+
+

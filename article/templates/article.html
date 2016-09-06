@@ -1,20 +1,37 @@
 {% extends 'main.html' %}
 {% block article %}
-<h6>{{ article.article_date }}</h6>
-<h2>{{ article.article_title }}</h2>
-<p>{{ article.article_text }}</p>
-<hr>
-<div class="large-offset-2 large-12 columns">
-<p>Комментарии:</p>
-{% for comment in comments %}
-    <p>{{ comment.comments_text }}</p>
-    <p>{{ comment.comments_from.username }}{{ comment.comments_date }}</p>
+<div class="medium-8 columns">
+    <p><h2>{{ article.article_title }}</h2></p>
+    <p>{{ article.article_text }}</p>
+    <font color="#808080">Автор статьи: {{ article.article_author }}</font>
+    <p><font color="#808080">{{ article.article_date }}</font></p>
+    {% if article.article_author == request.user %}
+        <form action="/articles/article_edit/{{ article.id }}" method="get">
+        <button type="submit">Редактировать статью</button>
+        </form>
+        <form action="/articles/delete/{{ article.id }}" method="get">
+        <button type="submit">Удалить</button>
+        </form>
+    {% endif %}
     <hr>
-{% endfor %}
-<form action="/articles/addcomment/{{ article.id }}/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" class="button" value="Добавить комментарий">
-</form>
+<h3><b>Комментарии:</b></h3>
+</div>
+<div class="row" id="content">
+    <div class="medium-10 columns">
+    {% for comment in comments %}
+        <br><b><font color="#1e90ff">{{ comment.comments_author }}</font> :  </b>{{ comment.comments_text }}<BR>
+        <small>{{ comment.comments_date }}</small>
+        <hr>
+    {% endfor %}
+    {% if article.article_author != request.user %}
+        <form action="/articles/addcomment/{{ article.id }}/" method="post">
+        {% if request.user.is_authenticated %}
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Добавить комментарий</button>
+        </form>
+        {% endif %}
+    {% endif %}
+    </div>
 </div>
 {% endblock %}

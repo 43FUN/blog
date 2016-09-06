@@ -3,4 +3,5 @@ from users import views
 
 urlpatterns = [
     url(r'^profile', views.profile, name='profile'),
+
 ]

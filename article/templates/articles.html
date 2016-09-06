@@ -2,16 +2,32 @@
 {% load staticfiles %}
 
 {% block article %}
-<div class="large-5 columns">
-{% for article in articles %}
-    <h6>Дата публикации: {{ article.article_date }}</h6>
-    <h4><a href="/articles/get/{{article.id}}">{{ article.article_title }}</a></h4>
-    <p>{{ article.article_text }}</p>
-    <p><a href="/articles/addlike/{{ article.id }}/"><img src="{% static "like.jpg" %}" width="40px" height="35px"></a> {{ article.article_likes }}</p>
-    <hr>
-{% endfor %}
+<div class="row" id="content">
+    <div class="medium-8 columns">
+        <div class="blog-post">
+    {% for article in articles %}
+        <p><h3><a href="/articles/get/{{article.id}}">{{ article.article_title }}</a> <small> {{ article.article_date }}</small></h3></p>
+        <p>{{ article.article_text }}</p>
+        <b>Автор :</b> {{ article.article_author }}
+        <p><a href="/articles/addlike/{{ article.id }}/"><img src="{% static "like.jpg" %}" width="40px" height="35px"></a>  <b>{{ article.article_likes }}</b></p>
+        <hr>
+    {% endfor %}
+        </div>
+    </div>
+    <div class="medium-3 columns">
+        <h3><font color="#1e90ff">Фильтр по:</font></h3>
+        <h4>По автору</h4>
+        {% for author in authors %}
+            <a href="?author={{ author.id }}">{{ author.username }}</a><br>
+        {% endfor %}
+        <h4>По дате</h4>
+        <a href="?date=7">За 7 Дней</a><br>
+        <a href="?date=31">За последний месяц</a><br>
+        <a href="?date=365">За последний год</a><br>
+    </div>
 </div>
-<hr>
+
+<br>
 <div class="row">
     <div class="large-3 large-offset-5 colums">
         <ul class="pagination">

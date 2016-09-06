@@ -18,10 +18,20 @@ Including another URLconf
 from article import views
 urlpatterns = [
     url(r'^articles/all/$', views.articles, name='articles'),
-    url(r'^articles/get/(?P<article_id>\d+)/$', views.article, name='article'),
-    url(r'^articles/addlike/(?P<article_id>\d+)/$', views.addlike, name='addlike'),
-    url(r'^articles/addcomment/(?P<article_id>\d+)/$', views.addcomment, name='addcomment'),
+    url(r'^articles/get/(?P<article_id>\d+)/$',
+        views.article, name='article'),
+    url(r'^articles/addlike/(?P<article_id>\d+)/$',
+        views.addlike, name='addlike'),
+    url(r'^articles/addcomment/(?P<article_id>\d+)/$',
+        views.addcomment, name='addcomment'),
     url(r'^page/(\d+)/$', views.articles, name='articles'),
+    url(r'^articles/article_add/0/$',
+        views.article_add, name='article_add'),
+    url(r'^articles/delete/(?P<article_id>\d+)/$',
+        views.delete, name='delete'),
+    url(r'^articles/article_edit/(?P<article_id>\d+)/$',
+        views.article_edit, name='article_edit'),
     url(r'^$', views.articles, name='articles'),
+
 
 ]

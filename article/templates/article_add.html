@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'main.html' %}
+
+
+{% block article_add %}
+<h2>Добавление статьи</h2>
+<div class="row" id="content">
+    <div class="medium-8 columns">
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form }}
+        <button type="submit">Сохранить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
