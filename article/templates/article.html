@@ -6,10 +6,10 @@
     <font color="#808080">Автор статьи: {{ article.article_author }}</font>
     <p><font color="#808080">{{ article.article_date }}</font></p>
     {% if article.article_author == request.user %}
-        <form action="/articles/article_edit/{{ article.id }}" method="get">
+        <form action="{% url 'article:article_edit' article_id=article.id %}" method="get">
         <button type="submit">Редактировать статью</button>
         </form>
-        <form action="/articles/delete/{{ article.id }}" method="get">
+        <form action="{% url 'article:delete' article_id=article.id %}" method="get">
         <button type="submit">Удалить</button>
         </form>
     {% endif %}
@@ -24,7 +24,7 @@
         <hr>
     {% endfor %}
     {% if article.article_author != request.user %}
-        <form action="/articles/addcomment/{{ article.id }}/" method="post">
+        <form action="{% url 'article:addcomment' article_id=article.id %}" method="post">
         {% if request.user.is_authenticated %}
         {% csrf_token %}
         {{ form }}

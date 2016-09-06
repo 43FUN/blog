@@ -6,10 +6,10 @@
     <div class="medium-8 columns">
         <div class="blog-post">
     {% for article in articles %}
-        <p><h3><a href="/articles/get/{{article.id}}">{{ article.article_title }}</a> <small> {{ article.article_date }}</small></h3></p>
+        <p><h3><a href="{% url 'article:article' article_id=article.id %}">{{ article.article_title }}</a> <small> {{ article.article_date }}</small></h3></p>
         <p>{{ article.article_text }}</p>
         <b>Автор :</b> {{ article.article_author }}
-        <p><a href="/articles/addlike/{{ article.id }}/"><img src="{% static "like.jpg" %}" width="40px" height="35px"></a>  <b>{{ article.article_likes }}</b></p>
+        <p><a href="{% url 'article:addlike' article_id=article.id %}"><img src="{% static "like.jpg" %}" width="40px" height="35px"></a>  <b>{{ article.article_likes }}</b></p>
         <hr>
     {% endfor %}
         </div>

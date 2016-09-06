@@ -3,7 +3,11 @@
 {% block profile %}
 <h3>Пользователь: <b>{{ request.user }}</b></h3>
 <div class="medium-2 columns">
-    <img src="/media/{{ request.user.avatar }}" width="100px" height="80px"><br>
+    {% if request.user.avatar %}
+        <img src="{{ request.user.avatar.url }}" width="100px" height="80px"><br>
+    {% else %}
+        <img src="/static/img/noavatar.jpg" width="100px" height="80px"><br>
+    {% endif %}
     {{ request.user }}
     <form action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -17,7 +21,7 @@
         <div class="blog-post">
         {% for article in request.user.article_set.all %}
             {% csrf_token %}
-            <b><a href="/articles/get/{{article.id}}">{{ article.article_title }}</a></b><br>
+            <b><a href="{% url 'article:article' article_id=article.id %}">{{ article.article_title }}</a></b><br>
             {{ article.article_text | truncatechars:90 }}<br>
             <font color="#778899">{{ article.article_date }}</font><br>
             <hr>

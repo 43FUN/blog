@@ -2,7 +2,7 @@
 
 {% block login %}
     <div class="large-offset-3 large-6 columns">
-        <form action="/auth/login/" method="post">
+        <form action="{% url 'loginsys:login' %}" method="post">
             {% csrf_token %}
             <label for="username">E-mail</label>
             <input type="EMAIL" name="username" id="username">
@@ -12,7 +12,7 @@
                 <label class="error">{{ login_error }}</label>
             {% endif %}
             <input class="button" type="submit" value="Войти">
-            <a href="/auth/register" class="button">Регистрация</a>
+            <a href="{% url 'loginsys:register' %}" class="button">Регистрация</a>
         </form>
     </div>
 {% endblock %}

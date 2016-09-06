@@ -20,10 +20,9 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='urls'),
-    url(r'^basicview/', include('article.urls')),
-    url(r'^auth/', include('loginsys.urls')),
+    url(r'^auth/', include('loginsys.urls', namespace='loginsys')),
     url(r'^users/', include('users.urls', namespace='users')),
-    url(r'^', include('article.urls')),
+    url(r'^', include('article.urls', namespace='article')),
 ]
 
 if settings.DEBUG:

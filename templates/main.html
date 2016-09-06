@@ -12,10 +12,10 @@
     <section class="top-bar-section">
         <ul class="right-small">
             {% if request.user.is_authenticated %}
-                <li><a href="/users/profile">Личный кабинет</a></li>
-                <li><a href="/auth/logout/">Выйти ({{ request.user }})</a></li>
+                <li><a href="{% url 'users:profile' %}">Личный кабинет</a></li>
+                <li><a href="{% url 'loginsys:logout' %}">Выйти ({{ request.user }})</a></li>
             {% else %}
-                <li><a href="/auth/login/">Войти</a></li>
+                <li><a href="{% url 'loginsys:login' %}">Войти</a></li>
             {% endif %}
         </ul>
     </section>
