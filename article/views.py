@@ -91,6 +91,7 @@ def addcomment(request, article_id):
             comment.comments_article = Article.objects.get(
                 id=article_id)
             comment.comments_author = request.user
+            comment.avatar = request.user.avatar
             form.save()
             request.session.set_expiry(60)
             request.session['pause'] = True

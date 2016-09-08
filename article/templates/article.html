@@ -19,7 +19,8 @@
 <div class="row" id="content">
     <div class="medium-10 columns">
     {% for comment in comments %}
-        <br><b><font color="#1e90ff">{{ comment.comments_author }}</font> :  </b>{{ comment.comments_text }}<BR>
+        <img src="/media/{{ comment.avatar }}" width="50px">
+        <br><b><font color="#1e90ff">{{ comment.comments_author }}</font> :  </b>{{ comment.comments_text }}<br>
         <small>{{ comment.comments_date }}</small>
         <hr>
     {% endfor %}

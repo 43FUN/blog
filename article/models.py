@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from users.models import User
 import datetime
-
+from users.models import User
 
 # Create your models here.
 class Article(models.Model):
@@ -21,6 +21,7 @@ class Article(models.Model):
 class Comments(models.Model):
     class Meta():
         db_table = 'comments'
+    avatar = models.ImageField('Аватар')
     comments_text = models.TextField(verbose_name="Комментарий")
     comments_article = models.ForeignKey(Article)
     comments_author = models.ForeignKey(User, verbose_name='Автор')
