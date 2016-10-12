@@ -61,10 +61,10 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/home/peppa/project/blog/templates',
-            '/home/peppa/project/blog/article/templates',
-            '/home/peppa/project/blog/loginsys/templates/',
-            '/home/peppa/project/blog/users/templates/',
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'article/templates'),
+            os.path.join(BASE_DIR, 'loginsys/templates/'),
+            os.path.join(BASE_DIR, 'users/templates/'),
 
                  ],
         'APP_DIRS': True,
@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/home/peppa/project/blog/static/css/',
+    os.path.join(BASE_DIR, 'static/css/'),
 ]
 
 AUTH_USER_MODEL = "users.User"
